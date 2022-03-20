@@ -29,9 +29,14 @@ def get_db_engine():
 
 def load_csv(filename, engine):
     df = pd.read_csv(filename)
+    
+    if 'spotify_dataset.csv' in filename:
+        df = df.drop(columns=['Index'])
+
     table_name = Path(filename).stem
-    table_name.replace('-of-', '_')
-    result = df.to_sql(table_name, con=engine)
+    table_name = table_name.replace('-of-', '_')
+    print(f'Inserting contents of {filename} into table {table_name}')
+    result = df.to_sql(table_name, con=engine, if_exists='replace')
     print(f'{result} rows have been affected.')
 
 
