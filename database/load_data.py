@@ -6,7 +6,7 @@ import pandas as pd
 import sqlalchemy
 
 
-def get_sb_engine():
+def get_db_engine():
     try:
         url = sqlalchemy.engine.URL.create(
             drivername='mysql',
@@ -19,3 +19,14 @@ def get_sb_engine():
     except KeyError as ke:
         print('You are missing a database connection env var.')
         print(ke.args)
+
+    engine = sqlalchemy.create_engine(url)
+    return engine
+
+
+def main():
+    engine = get_db_engine()
+
+
+if __name__ == '__main__':
+    main()
