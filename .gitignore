@@ -130,3 +130,4 @@ dmypy.json
 
 # user ignores
 */db_conn_vars.sh
+data
