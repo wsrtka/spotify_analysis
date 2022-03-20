@@ -9,7 +9,7 @@ import sqlalchemy
 def get_db_engine():
     try:
         url = sqlalchemy.engine.URL.create(
-            drivername='mysql',
+            drivername='mysql+pymysql',
             username=os.environ['DB_USER'],
             password=os.environ['DB_PASS'],
             host=os.environ['DB_HOST'],
