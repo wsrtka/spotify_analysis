@@ -1,6 +1,9 @@
 """Module used to load data into database."""
 
+from fileinput import filename
 import os
+
+from pathlib import Path
 
 import pandas as pd
 import sqlalchemy
@@ -24,8 +27,19 @@ def get_db_engine():
     return engine
 
 
+def load_csv(filename, engine):
+    df = pd.read_csv(filename)
+    table_name = Path(filename).stem
+    table_name.replace('-of-', '_')
+    result = df.to_sql(table_name, con=engine)
+    print(f'{result} rows have been affected.')
+
+
 def main():
     engine = get_db_engine()
+    filenames = (filename for filename in os.listdir('./data') if filename.endswith('.csv'))
+    for filename in filenames:
+        load_csv(f'./data/{filename}', engine)
 
 
 if __name__ == '__main__':
