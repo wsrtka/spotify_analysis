@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# user ignores
+*/db_conn_vars.sh
+data
