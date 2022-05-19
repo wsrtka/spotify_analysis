@@ -129,5 +129,6 @@ dmypy.json
 .pyre/
 
 # user ignores
-*/db_conn_vars.sh
+**/db_conn_vars.sh
+**/spoti_conn_vars.sh
 data
